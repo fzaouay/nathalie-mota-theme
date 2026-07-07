@@ -4,6 +4,9 @@
     <span>&copy; <?php echo date('Y'); ?> Tous droits réservés</span>
 </footer>
 
+<?php get_template_part('template-parts/contact_modal'); ?>
+
+
 <?php wp_footer(); ?>
 </body>
 </html>

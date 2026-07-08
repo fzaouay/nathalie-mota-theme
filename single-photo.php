@@ -14,11 +14,11 @@
                     <p>ANNÉE : <?php the_time('Y'); ?></p>
                 </div>
 
-                    <div class="photo_image">
-                        <?php the_post_thumbnail('full'); ?>
-                    </div>
+                <div class="photo-image">
+                    <?php the_post_thumbnail('full'); ?>
+                </div>
 
-            <?php endwhile;
+        <?php endwhile;
     endif; ?>
 
 </main>

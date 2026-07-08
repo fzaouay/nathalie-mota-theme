@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             modal.classList.add('is-open');
+
+            const ref= link.getAttribute('data-ref');
+            if (ref) {
+                jQuery('#ref-photo') .val(ref);
+            }
         });
     });
 

@@ -163,3 +163,32 @@ Version: 1.0
     color: #000;
     display: block;
 }
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.catalogue-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px;
+}

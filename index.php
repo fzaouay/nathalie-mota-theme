@@ -20,8 +20,35 @@
     </section>
 
     <section class="catalogue">
+        <div class="catalogue-filtres">
+            <select id="filter-categorie">
+                <option value="">Catégories</option>
+                <?php
+                $categories = get_terms(array('taxonomy' => 'categorie', 'hide_empty' => false));
+                foreach ($categories as $cat) {
+                    echo '<option value="' . esc_attr($cat->term_id) . '">' . esc_html($cat->name) . '</option>';
+                }
+                ?>
+            </select>
 
-        <div class="catalogue-list">
+            <select id="filter-format">
+                <option value="">Formats</option>
+                <?php
+                $formats = get_terms(array('taxonomy' => 'format', 'hide_empty' => false));
+                foreach ($formats as $format) {
+                    echo '<option value="' . esc_attr($format->term_id) . '">' . esc_html($format->name) . '</option>';
+                }
+                ?>
+            </select>
+
+            <select id="filter-order">
+                <option value="desc">Plus récentes</option>
+                <option value="asc">Plus anciennes</option>
+            </select>
+
+        </div>
+
+        <div id="catalogue-list" class="catalogue-list">
             <?php
             $catalogue_query = new WP_Query(array(
                 'post_type' => 'photo',
@@ -34,6 +61,8 @@
             endif; ?>
             <?php wp_reset_postdata(); ?>
         </div>
+
+        <button id="load-more" class="load-more-btn">Charger plus</button>
 
     </section>
 </main>

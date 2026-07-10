@@ -141,3 +141,25 @@ Version: 1.0
     height: 80px;
     object-fit: cover;
 }
+
+.related-photos-list {
+    display: flex;
+    gap: 20px;
+}
+
+.photo-block {
+    position: relative;
+    width: 300px;
+}
+
+.photo-block img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.photo-block-link {
+    text-decoration: none;
+    color: #000;
+    display: block;
+}

@@ -51,6 +51,36 @@
 
                 </div>
             </div>
+
+            <div class="related-photos">
+                <p class="related-photo-title">Vous aimerez aussi</p>
+
+                <div class="related-photos-list">
+                    <?php
+                    $categories = wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'ids'));
+                    
+                    $related_query = new WP_Query(array(
+                      'post_type' => 'photo',
+                      'posts_per_page' => 2,
+                      'post__not_in'  => array(get_the_ID()),
+                      'tax_query'  => array(
+                        array(
+                            'taxonomy' => 'categorie',
+                            'field'  => 'term_id',
+                            'terms'  => $categories,
+                        ),
+                      ),
+                    ));
+                    ?>
+
+                    <?php if ($related_query->have_posts()) : while ($related_query->have_posts()) : $related_query->the_post(); ?>
+                        <?php get_template_part('template-parts/photo_block'); ?>
+                    <?php endwhile; endif; ?>
+
+                    <?php wp_reset_postdata(); ?>
+                </div>
+
+            </div>
     <?php endwhile; endif; ?>
 
 </main>

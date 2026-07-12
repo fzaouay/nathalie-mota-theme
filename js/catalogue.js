@@ -4,13 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterCategorie = document.getElementById('filter-categorie');
     const filterFormat = document.getElementById('filter-format');
     const filterOrder = document.getElementById('filter-order');
+    const loadMoreBtn = document.getElementById('load-more');
 
-    function loadPhotos() {
+    let currentPage = 1;
+
+    function buildUrl(page) {
         const categorie = filterCategorie.value;
         const format = filterFormat.value;
         const order = filterOrder.value;
 
-        let url = '/wp-json/wp/v2/photo?&per_page=8&orderby=date&order=' + order + '&_embed=true';
+        let url = '/wp-json/wp/v2/photo?per_page=8&page=' + page + '&orderby=date&order=' + order + '&_embed=true';
 
         if (categorie) {
             url += '&categorie=' + categorie;
@@ -19,11 +22,20 @@ document.addEventListener('DOMContentLoaded', function () {
             url += '&format=' + format;
         }
 
+        return url;
+    }
+
+    function loadPhotos(reset) {
+        if (reset) {
+            currentPage = 1;
+            catalogueList.innerHTML = '';
+        }
+
+        const url = buildUrl(currentPage);
+
         fetch(url)
             .then(response => response.json())
             .then(photos => {
-                catalogueList.innerHTML = '';
-
                 photos.forEach(photo => {
                     catalogueList.innerHTML += buildPhotoBlock(photo);
                 });
@@ -45,10 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 </a>
             </div>
         `;
-
     }
 
-    filterCategorie.addEventListener('change', loadPhotos);
-    filterFormat.addEventListener('change', loadPhotos);
-    filterOrder.addEventListener('change', loadPhotos);
+    filterCategorie.addEventListener('change', function () {
+        loadPhotos(true);
+    });
+    filterFormat.addEventListener('change', function () {
+        loadPhotos(true);
+    });
+    filterOrder.addEventListener('change', function () {
+        loadPhotos(true);
+    });
+
+    loadMoreBtn.addEventListener('click', function () {
+        currentPage++;
+        loadPhotos(false);
+    });
+
 });

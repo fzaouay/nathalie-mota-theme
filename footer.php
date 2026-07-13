@@ -5,6 +5,7 @@
 </footer>
 
 <?php get_template_part('template-parts/contact_modal'); ?>
+<?php get_template_part('template-parts/lightbox'); ?>
 
 
 <?php wp_footer(); ?>

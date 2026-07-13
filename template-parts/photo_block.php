@@ -4,7 +4,10 @@
 
         <span class="photo-block-icons">
             <span class="photo-block-icon-info">👁</span>
-            <span class="photo-block-icon-zoom">⛶</span>
+            <span class="photo-block-icon-zoom js-open-lightbox"
+                data-full="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>"
+                data-ref="<?php echo esc_attr(get_field('reference')); ?>"
+                data-cat="<?php echo esc_html(get_the_term_list(get_the_ID(), 'categorie', '', ', ')); ?>">⛶</span>
         </span>
 
         <span class="photo-block-caption">

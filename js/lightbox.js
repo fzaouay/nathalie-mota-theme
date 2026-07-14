@@ -6,8 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const lightboxCat = document.getElementById('lightbox-cat');
     const closeBtn = document.getElementById('lightbox-close');
     const overlay = document.querySelector('.lightbox-overlay');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
 
-    function openLightbox(zoomIcon) {
+    let currentIndex = 0;
+
+    function getZoomIcons() {
+        return document.querySelectorAll('.js-open-lightbox');
+    }
+
+    function showPhoto(zoomIcon) {
         const fullUrl = zoomIcon.getAttribute('data-full');
         const ref = zoomIcon.getAttribute('data-ref');
         const cat = zoomIcon.getAttribute('data-cat');
@@ -15,7 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
         lightboxImage.src = fullUrl;
         lightboxRef.textContent = 'RÉFÉRENCE : ' + ref;
         lightboxCat.innerHTML = cat;
+    }
 
+    function openLightbox(zoomIcon) {
+        const icons = getZoomIcons();
+        currentIndex = Array.from(icons).indexOf(zoomIcon);
+
+        showPhoto(zoomIcon);
         lightbox.classList.add('is-open');
     }
 
@@ -25,6 +39,18 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation();
             openLightbox(e.target);
         }
+    });
+
+    prevBtn.addEventListener('click', function () {
+        const icons = getZoomIcons();
+        currentIndex = (currentIndex - 1 + icons.length) % icons.length;
+        showPhoto(icons[currentIndex]);
+    });
+
+    nextBtn.addEventListener('click', function () {
+        const icons = getZoomIcons();
+        currentIndex = (currentIndex + 1) % icons.length;
+        showPhoto(icons[currentIndex]);
     });
 
     closeBtn.addEventListener('click', function () {

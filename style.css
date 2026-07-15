@@ -7,6 +7,47 @@ Description: Thème personnalisé pour Nathalie Mota, photographe événementiel
 Version: 1.0
 */
 
+@font-face {
+    font-family: 'Space Mono';
+    src: url('fonts/SpaceMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('fonts/SpaceMono-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --color-rouge: #E00000;
+    --color-rouge-secondaire: #FE5858;
+    --color-rouge-tertiaire: #FFD6D6;
+    --color-noir: #000000;
+    --color-bleu-fonce: #313144;
+    --color-gris-fonce: #C4C4C4;
+    --color-gris-medium: #D8D8D8;
+    --color-gris-light: #E5E5E5;
+}
+
+body {
+    font-family: 'Space Mono', monospace;
+}
+
+p,
+.paragraphe {
+    font-family: 'Poppins', sans-serif;
+}
+
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -14,11 +55,8 @@ Version: 1.0
     padding: 20px 40px;
 }
 
-.site-header .logo a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    letter-spacing: 2px;
+.site-header .logo img {
+    height: 21.84px;
 }
 
 .main-nav ul {
@@ -66,7 +104,7 @@ Version: 1.0
 
 .contact-modal-content {
     position: relative;
-    background: #fff;
+    background: var(--color-gris-light);
     padding: 40px;
     max-width: 500px;
     width: 90%;
@@ -149,12 +187,18 @@ Version: 1.0
 
 .photo-block {
     position: relative;
-    width: 300px;
+    width: calc(50% - 10px);
 }
 
-.photo-block img {
+.photo-block-image-wrap {
+    position: relative;
+    aspect-ratio: 564 / 495;
+    overflow: hidden;
+}
+
+.photo-block-image-wrap img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -275,4 +319,26 @@ Version: 1.0
 
 .photo-block-icon-zoom {
     cursor: pointer;
+}
+
+
+.photo-block-image-wrap {
+    position: relative;
+}
+
+.photo-block-image-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-rouge);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.photo-block:hover .photo-block-image-wrap::after {
+    opacity: 0.4;
 }

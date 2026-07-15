@@ -44,21 +44,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function buildPhotoBlock(photo) {
         return `
-            <div class="photo-block">
-                <a href="${photo.link}" class="photo-block-link">
+        <div class="photo-block">
+            <a href="${photo.link}" class="photo-block-link">
+                <div class="photo-block-image-wrap">
                     <img src="${photo._embedded['wp:featuredmedia'][0].source_url}" alt="${photo.title.rendered}">
                     <span class="photo-block-icons">
                         <span class="photo-block-icon-info">👁</span>
                         <span class="photo-block-icon-zoom">⛶</span>
                     </span>
-                    <span class="photo-block-caption">
-                        <span class="photo-block-title">${photo.title.rendered}</span>
-                    </span>
-                </a>
-            </div>
-        `;
+                </div>
+                <span class="photo-block-caption">
+                    <span class="photo-block-title">${photo.title.rendered}</span>
+                    <span class="photo-block-category"></span>
+                </span>
+            </a>
+        </div>
+    `;
     }
-
     filterCategorie.addEventListener('change', function () {
         loadPhotos(true);
     });

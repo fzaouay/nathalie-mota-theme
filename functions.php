@@ -11,7 +11,7 @@ add_action('after_setup_theme', 'nathalie_mota_register_menus');
 function nathalie_mota_enqueue_assets()
 {
     wp_enqueue_style('nathalie-mota-style', get_stylesheet_uri());
-    wp_enqueue_script('nathalie-mota-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('nathalie-mota-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.2', true);
     wp_enqueue_script('nathalie-mota-catalogue', get_template_directory_uri() . '/js/catalogue.js', array('jquery'), '1.0', true);
     wp_enqueue_script('nathalie-mota-lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), '1.2', true);
 }

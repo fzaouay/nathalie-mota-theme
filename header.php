@@ -22,4 +22,16 @@
         ));
         ?>
     </nav>
+
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle">☰</button>
 </header>
+
+<div id="mobile-menu" class="mobile-menu">
+    <button id="mobile-menu-close" class="mobile-menu-close">&times;</button>
+    <?php
+    wp_nav_menu(array(
+        'theme_location' => 'menu-principal',
+        'container'      => false,
+    ));
+    ?>
+</div>
